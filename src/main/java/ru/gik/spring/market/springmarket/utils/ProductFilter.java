@@ -25,5 +25,10 @@ public class ProductFilter {
             spec = spec.and(ProductSpecifications.priceLesserOrEqualsThan(maxPrice));
             filterDefinition.append("&max_price=").append(maxPrice);
         }
+        if (map.containsKey("product_name")) {
+            String title = map.get("product_name");
+            spec = spec.and(ProductSpecifications.titleContains(title));
+            filterDefinition.append("&product_name=").append(title);
+        }
     }
 }
