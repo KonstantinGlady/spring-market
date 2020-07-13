@@ -35,8 +35,9 @@
                    name="max_price">
         </div>
         <button type="submit" class="btn btn-primary">Применить</button>
-        <button type="reset" class="btn btn-primary" value="Reset">Очистить</button>
+        <a th:type="button" class="btn btn-primary"  th:href="@{'/products'}">Reset</a>
     </form>
+
 
     <h4>Список товаров:</h4>
     <table class="table table-striped">
