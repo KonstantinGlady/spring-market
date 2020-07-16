@@ -20,6 +20,12 @@
 
     <form th:accept="@{'/products'}" method="get">
         <div class="form-group">
+            <label>По категории</label>
+            <input type="text" th:value="${param.product_category != null ? param.product_category : ''}" class="form-control"
+                   name="product_category">
+        </div>
+
+        <div class="form-group">
             <label>По наименованию</label>
             <input type="text" th:value="${param.product_name != null ? param.product_name : ''}" class="form-control"
                    name="product_name">
@@ -37,8 +43,6 @@
         <button type="submit" class="btn btn-primary">Применить</button>
         <a th:type="button" class="btn btn-primary"  th:href="@{'/products'}">Reset</a>
     </form>
-
-
     <h4>Список товаров:</h4>
     <table class="table table-striped">
         <thead>

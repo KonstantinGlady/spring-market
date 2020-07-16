@@ -24,3 +24,25 @@ insert into products(title, description, price) values
 ('pork',' ',426),
 ('cheese',' ',395);
 
+drop table if exists categories cascade;
+create table if not exists categories(id bigserial, name varchar(255), primary key (id));
+insert into categories(name) values
+('sport'),
+('food'),
+('other'),
+('auto'),
+('accessories'),
+('clothes');
+
+drop table if exists products_categories cascade;
+create table if not exists products_categories(
+        product_id integer references products (id), category_id integer references categories (id));
+insert into products_categories(product_id, category_id) values
+(1,1),
+(2,1),
+(3,1),
+(4,2),
+(5,2),
+(6,3),
+(7,4),
+(7,2);
