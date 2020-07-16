@@ -25,10 +25,17 @@ public class ProductFilter {
             spec = spec.and(ProductSpecifications.priceLesserOrEqualsThan(maxPrice));
             filterDefinition.append("&max_price=").append(maxPrice);
         }
-        if (map.containsKey("product_name")) {
+        if (map.containsKey("product_name") && !map.get("product_name").isEmpty()) {
             String title = map.get("product_name");
             spec = spec.and(ProductSpecifications.titleContains(title));
             filterDefinition.append("&product_name=").append(title);
         }
+
+        if (map.containsKey("product_category") && !map.get("product_category").isEmpty()) {
+            String category = map.get("product_category");
+            spec = spec.and(ProductSpecifications.onlyCategories(category));
+            filterDefinition.append("&category=").append(category);
+        }
+
     }
 }
