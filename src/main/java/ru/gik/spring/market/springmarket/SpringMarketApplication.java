@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class SpringMarketApplication {
-	// todo Домашнее задание:
-	// 1. Добавить категории
-	// 2. Сделать фильтр по одной категории (если делаете п.2, то не надо делать п.3)
-	// 3. Сделать фильтр по нескольким категориям (если делаете п.3, то не надо делать п.2)
+	// Домашнее задание:
+	// 1. Реализуйте корзину в виде бина (корзина не сущность, а обычный Спринг бин)
+	// 2. Необходимо добавлять товары в корзину, удалять их оттуда, просматривать
+	// список товаров в корзине
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringMarketApplication.class, args);

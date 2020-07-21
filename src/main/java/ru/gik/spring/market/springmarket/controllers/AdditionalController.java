@@ -14,4 +14,5 @@ public class AdditionalController {
     public String homepage() {
         return "index";
     }
+
 }
