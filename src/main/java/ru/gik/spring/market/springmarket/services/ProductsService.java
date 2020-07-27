@@ -43,4 +43,16 @@ public class ProductsService {
     public List<ProductDto> getDto() {
         return productsRepository.findAllBy();
     }
+
+    public boolean existsById(Long id) {
+        return productsRepository.existsById(id);
+    }
+
+    public void deleteAll() {
+        productsRepository.deleteAll();
+    }
+
+    public void deleteById(Long id) {
+        productsRepository.deleteById(id);
+    }
 }
