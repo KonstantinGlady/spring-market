@@ -26,6 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/cart/**").authenticated()
+               //.antMatchers("admin/users/").hasRole("ROLE_ADMIN") //Caused by: java.lang.IllegalArgumentException: role should not start with 'ROLE_' since it is automatically inserted. Got 'ROLE_ADMIN'
+                // .antMatchers("/admin/**").hasAnyRole("ROLE_ADMIN")// There was an unexpected error (type=Forbidden, status=403).
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

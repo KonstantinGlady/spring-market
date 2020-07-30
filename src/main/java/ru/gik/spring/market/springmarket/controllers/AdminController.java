@@ -8,17 +8,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.gik.spring.market.springmarket.entities.Product;
 import ru.gik.spring.market.springmarket.services.ProductsService;
+import ru.gik.spring.market.springmarket.services.UserService;
 import ru.gik.spring.market.springmarket.utils.ProductFilter;
 
 import java.util.Map;
 
 @Controller
-@RequestMapping("/products")
-public class ProductsController {
+@RequestMapping("/admin")
+public class AdminController {
+
     private ProductsService productsService;
+    private UserService userService;
 
     @Autowired
-    public ProductsController(ProductsService productsService) {
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setProductsService(ProductsService productsService) {
         this.productsService = productsService;
     }
 
@@ -29,11 +37,16 @@ public class ProductsController {
         Page<Product> products = productsService.findAll(productFilter.getSpec(), pageNumber);
         model.addAttribute("products", products);
         model.addAttribute("filterDef", productFilter.getFilterDefinition().toString());
-        return "all_products";
+        return "manage_products";
     }
 
+    @GetMapping("/users")
+    public String getUsers(Model model) {
+        model.addAttribute("usersList",userService.findAll());
+        return "users";
+    }
 
-   /* @GetMapping("/add")
+    @GetMapping("/add")
     public String showAddForm() {
         return "add_product_form";
     }
@@ -41,19 +54,24 @@ public class ProductsController {
     @PostMapping("/add")
     public String saveNewProduct(@ModelAttribute Product product) {
         productsService.saveOrUpdate(product);
-        return "redirect:/products/";
+        return "redirect:/admin/";
     }
 
     @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        model.addAttribute("product", productsService.findById(id));
+    public String getEditForm(@PathVariable Long id, Model model) {
+        model.addAttribute("products", productsService.findById(id));
         return "edit_product_form";
     }
 
     @PostMapping("/edit")
-    public String modifyProduct(@ModelAttribute Product product) {
+    public String editProduct(@ModelAttribute Product product) {
         productsService.saveOrUpdate(product);
-        return "redirect:/products/";
+        return "redirect:/admin";
     }
-*/
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        productsService.deleteById(id);
+        return "redirect:/admin/";
+    }
 }

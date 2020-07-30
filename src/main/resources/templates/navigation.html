@@ -24,8 +24,15 @@
                 <li class="nav-item" th:classappend="${activeTab == 'About' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{'/about'}" th:text="#{nav.about}"></a>
                 </li>
-                <li class="nav-item" th:classappend="${activeTab == 'Cart' ? 'cart' : ''}">
+                <li class="nav-item" th:classappend="${activeTab == 'Cart' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{'/cart'}" th:text="#{nav.cart}"></a>
+                </li>
+
+                <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item" th:classappend="${activeTab == 'Users' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{'/admin/users'}" th:text="#{nav.admin}"></a>
+                </li>
+                <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" class="nav-item" th:classappend="${activeTab == 'AdminMarket' ? 'active' : ''}">
+                    <a class="nav-link" th:href="@{'/admin'}" th:text="#{nav.admin_products}"></a>
                 </li>
 
                 <li sec:authorize="isAuthenticated()" class="nav-item">

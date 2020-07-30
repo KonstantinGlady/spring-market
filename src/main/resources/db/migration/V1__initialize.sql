@@ -59,7 +59,9 @@ create table users(
     );
 insert into users (phone, password, first_name, last_name, email)
 values
-('11111111','$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i','admin','admin','admin@gmail.com');
+('11111111','$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i','admin','admin','admin@gmail.com'),/*password - 100*/
+('22222222','$2y$12$dXC/S8yWTHPdN84VcKdDNOdS8sT9GfMqBEHdq43T9zvMjP8UzrMP6','manager','manager','manager@gmail.com'), /*200*/
+('33333333','$2y$12$P0k8GRojRhSUur4qmtId8u/rDU4oD48OxS0bmMf/rAvUbwC2/LTYO','customer','customer','customer@gmail.com'); /*300*/
 
 drop table if exists roles;
 create table roles(
@@ -83,4 +85,8 @@ create table users_roles(
 insert into users_roles(user_id, role_id) values
 (1,1),
 (1,2),
-(1,3);
+(1,3),
+(2,1),
+(2,2),
+(3,1);
+

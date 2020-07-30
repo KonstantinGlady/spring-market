@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>July Market</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div th:replace="~{navigation :: navigation(Users)}"/>
+
+    <h2>July Market</h2>
+
+    <h4>Пользователи</h4>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td>Id</td>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>email</td>
+            <td>phone</td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="c : ${usersList}">
+            <td th:text="${c.getId()}"></td>
+            <td th:text="${c.getFirst_name()}"></td>
+            <td th:text="${c.getLast_name()}"></td>
+            <td th:text="${c.getEmail()}"></td>
+            <td th:text="${c.getPhone()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

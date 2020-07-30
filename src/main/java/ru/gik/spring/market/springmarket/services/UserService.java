@@ -14,6 +14,7 @@ import ru.gik.spring.market.springmarket.repositories.RolesRepository;
 import ru.gik.spring.market.springmarket.repositories.UsersRepository;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -49,5 +50,7 @@ public class UserService implements UserDetailsService {
     }
 
 
-
+    public List<User> findAll() {
+        return (List<User>) usersRepository.findAll();
+    }
 }
