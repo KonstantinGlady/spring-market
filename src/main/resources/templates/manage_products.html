@@ -13,12 +13,12 @@
 
 <body>
 <div class="container">
-    <div th:replace="~{navigation :: navigation(Market)}"/>
+    <div th:replace="~{navigation :: navigation(AdminMarket)}"/>
 
     <h2>July Market</h2>
     <h4>Фильтр</h4>
 
-    <form th:accept="@{'/products'}" method="get">
+    <form th:accept="@{'/admin'}" method="get">
         <div class="form-group">
             <label>По категории</label>
             <input type="text" th:value="${param.product_category != null ? param.product_category : ''}"
@@ -42,7 +42,8 @@
                    name="max_price">
         </div>
         <button type="submit" class="btn btn-primary">Применить</button>
-        <a th:type="button" class="btn btn-primary" th:href="@{'/products'}">Reset</a>
+        <a th:type="button" class="btn btn-primary" th:href="@{'/admin'}">Очистить</a>
+        <a th:type="buttom" class="btn btn-primary " th:href="@{'/admin/add'}">Добавить продукт</a>
     </form>
     <h4>Список товаров:</h4>
     <table class="table table-striped">
@@ -60,27 +61,26 @@
             <td th:text="${p.id}"></td>
             <td th:text="${p.title}"></td>
             <td th:text="${p.price}"></td>
-            <!--<td><a th:href="@{'/products/edit/' + ${p.id}}">Редактировать</a></td>-->
-            <td><a th:href="@{'/cart/add/' + ${p.id}}">В корзину</a></td>
+            <td><a th:href="@{'/admin/edit/' + ${p.id}}">Редактировать</a></td>
+            <td><a th:href="@{'/admin/delete/' + ${p.id}}">Удалить</a></td>
         </tr>
         </tbody>
     </table>
-
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li class="page-item" th:classappend="${!products.isFirst()?'':'active'}">
                 <a class="page-link "
-                   th:href="@{'/products/?p='+ ${products.previousOrFirstPageable().getPageNumber() + 1} + ${filterDef}}">Назад</a>
+                   th:href="@{'/admin/?p='+ ${products.previousOrFirstPageable().getPageNumber() + 1} + ${filterDef}}">Назад</a>
             </li>
 
             <li class="page-item" th:classappend="${products.getNumber() + 1 == i ? 'active' : ''}"
                 th:each="i : ${#numbers.sequence(1, products.getTotalPages())}">
-                <a class="page-link" th:text="${i}" th:href="@{'/products/?p=' + ${i} + ${filterDef}}"></a>
+                <a class="page-link" th:text="${i}" th:href="@{'/admin/?p=' + ${i} + ${filterDef}}"></a>
             </li>
 
             <li class="page-item" th:classappend="${!products.isLast()} ? '' : 'active'">
                 <a class="page-link"
-                   th:href="@{'/products/?p='+ ${products.nextOrLastPageable().getPageNumber() + 1} + ${filterDef}}">Вперед</a>
+                   th:href="@{'/admin/?p='+ ${products.nextOrLastPageable().getPageNumber() + 1} + ${filterDef}}">Вперед</a>
             </li>
         </ul>
     </nav>

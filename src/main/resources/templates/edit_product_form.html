@@ -13,7 +13,7 @@
 
 <body>
     <h1>Изменить товар</h1>
-    <form th:action="@{/products/edit}" th:object="${product}" method="POST">
+    <form th:action="@{/admin/edit}" th:object="${products}" method="POST">
         <input hidden th:field="*{id}"/>
         <br>
         Name: <input th:field="*{title}"/>

@@ -46,3 +46,47 @@ insert into products_categories(product_id, category_id) values
 (6,3),
 (7,4),
 (7,2);
+
+drop table if exists users;
+create table users(
+    id bigserial
+    , phone varchar(30) not null unique
+    , password varchar(80) not null
+    , email varchar(50) unique
+    , first_name varchar(50)
+    , last_name varchar(50)
+    , primary key (id)
+    );
+insert into users (phone, password, first_name, last_name, email)
+values
+('11111111','$2a$04$Fx/SX9.BAvtPlMyIIqqFx.hLY2Xp8nnhpzvEEVINvVpwIPbA3v/.i','admin','admin','admin@gmail.com'),/*password - 100*/
+('22222222','$2y$12$dXC/S8yWTHPdN84VcKdDNOdS8sT9GfMqBEHdq43T9zvMjP8UzrMP6','manager','manager','manager@gmail.com'), /*200*/
+('33333333','$2y$12$P0k8GRojRhSUur4qmtId8u/rDU4oD48OxS0bmMf/rAvUbwC2/LTYO','customer','customer','customer@gmail.com'); /*300*/
+
+drop table if exists roles;
+create table roles(
+    id serial,
+    name varchar (50) not null,
+    primary key (id)
+);
+insert into roles(name) values
+('ROLE_CUSTOMER'),( 'ROLE_MANAGER'), ('ROLE_ADMIN');
+
+drop table if exists users_roles;
+create table users_roles(
+    user_id int not null,
+    role_id int not null,
+    primary key (user_id, role_id),
+    foreign key (user_id)
+    references users (id),
+    foreign key (role_id)
+    references roles (id)
+);
+insert into users_roles(user_id, role_id) values
+(1,1),
+(1,2),
+(1,3),
+(2,1),
+(2,2),
+(3,1);
+

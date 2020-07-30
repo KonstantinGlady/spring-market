@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.gik.spring.market.springmarket.entities.Product;
+import ru.gik.spring.market.springmarket.entities.dto.ProductDto;
 import ru.gik.spring.market.springmarket.exceptions.ProductNotFoundException;
 import ru.gik.spring.market.springmarket.repositories.ProductsRepository;
 
@@ -37,5 +38,21 @@ public class ProductsService {
             page = 1;
         }
         return productsRepository.findAll(spec, PageRequest.of(page - 1, 10));
+    }
+
+    public List<ProductDto> getDto() {
+        return productsRepository.findAllBy();
+    }
+
+    public boolean existsById(Long id) {
+        return productsRepository.existsById(id);
+    }
+
+    public void deleteAll() {
+        productsRepository.deleteAll();
+    }
+
+    public void deleteById(Long id) {
+        productsRepository.deleteById(id);
     }
 }
